@@ -101,7 +101,7 @@ def test_sequence_name_defaults_to_the_glb_stem(driver, tmp_path, monkeypatch):
         str(glb), "--puppeteer", str(pup), "-o", str(tmp_path / "out"), "--skip-convert",
     ])
 
-    optimization = [cmd for cmd, _ in calls if any("optimization.py" in str(part) for part in cmd)][0]
+    optimization = next(cmd for cmd, _ in calls if any("optimization.py" in str(part) for part in cmd))
     assert "goblin_rigged" in optimization
 
 
