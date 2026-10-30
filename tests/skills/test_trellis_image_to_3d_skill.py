@@ -142,7 +142,7 @@ def test_preprocess_is_requested_before_generation(trellis, tmp_path):
 
     trellis.gen_one(client, "in.png", tmp_path / "goblin.glb", "goblin", _args(preprocess=True))
 
-    assert [c[0] for c in client.calls][0] == "/preprocess_image"
+    assert next(c[0] for c in client.calls) == "/preprocess_image"
 
 
 def test_manifest_header_is_written_once(trellis, tmp_path):
